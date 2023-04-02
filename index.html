@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--meta data-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--title-->
+  <link rel="shortcut icon" href="images/tic-tac-toe-favicon.png" type="image/x-icon">
+  <title>Tic Tac Toe</title>
+
+  <!--font [https://fonts.google.com/specimen/Press+Start+2P]-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!--js-->
+  <script src="main/js/main.js" defer></script>
+  <script src="main/js/style.js" defer></script>
+
+  <!--css-->
+  <link rel="stylesheet" href="main/css/main.css">
+  
+</head>
+<body>
+  <div class="game-board">
+    <h1>Tic Tac Toe</h1>
+    <p>nought : <span id="nought">0</span><br>
+    cross : <span id="cross">0</span></p>
+
+    <div class="game-play">
+      <p id="time">turn ends in <span>10</span>s</p>
+      <div class="arena"></div>
+    </div>
+
+    <div class="score-menu">
+
+    </div>
+
+    <div class="buttons">
+      <button id="restart" onclick=""><img src="https://img.icons8.com/ios-filled/50/9FA2A6/restart--v1.png"/></button>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/DryBoss/match-card" target="_blank" rel="noopener noreferrer">Source Code</a>
+    <p>Created by <a href="https://github.com/DryBoss" target="_blank" rel="noopener noreferrer">DryBoss</a></p>
+  </footer>
+</body>
+</html>

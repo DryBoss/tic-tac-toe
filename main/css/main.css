@@ -1,0 +1,39 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
+  color: #9FA2A6;
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #9FA2A6;
+}
+a:hover {
+  color: #F2F2F2;
+}
+
+button {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1rem;
+}
+
+body {
+  background-color: #0D0D0D;
+}
+
+.game-board {
+  height: calc(100vh - 30px);
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  width: 100vw;
+}
