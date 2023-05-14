@@ -42,18 +42,22 @@ body {
     height: calc(100vh - 30px);
     height: calc(var(--vh, 1vh) * 100 - 30px);
   }
+    h1 {
+      padding: 10px;
+    }
     .game-board {
       display: grid;
       grid-template-rows: repeat(10, 1fr);
       grid-template-columns: repeat(10, 1fr);
-      width: 500px;
-      height: 500px;
+      width: calc(100vh - 210px);
+      height: calc(100vh - 210px);
       background-color: $brightest;
     }
 
   .buttons {
     button {
       padding: 10px;
+      margin: 10px;
       height: 50px;
       width: 50px;
       background-color: transparent;
@@ -73,12 +77,22 @@ body {
     width: 100vw;
   }
 
+//responsive
+@media screen and (max-width: 1080px) {
+  .game-board {
+    width: calc(100vw - 20px);
+    height: calc(100vw - 20px);
+  }
+}
+
 //game
   //cell
   .cell {
     background-color: $background;
-    border: 1px dashed $text;
-    &:hover{
-
+    border: 1px solid $text;
+    &.blank {
+      &.cross-turn:hover {
+        
+      }
     }
   }
