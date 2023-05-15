@@ -1,5 +1,5 @@
 //imports
-import { drawCells, cellClick } from "./cell.js";
+import { cellsData, drawCells, placeMark, showPossibleMark, hidePossibleMark } from "./cell.js";
 
 //selectors
 const gameBoard = document.querySelector(".game-board");
@@ -13,6 +13,16 @@ drawCells(gameBoard);
 //selcting cells after generation
 const cells = document.querySelectorAll(".cell");
 
-cells.forEach(cell => {
-  cell.addEventListener("click", cellClick(cell, turn))
+cells.forEach( (cell, cellIndex) => {
+  cell.addEventListener("mouseover", () => {
+    showPossibleMark(cell, turn, cellIndex)
+  })
+  
+  cell.addEventListener("mouseout", () => {
+    hidePossibleMark(cell, turn, cellIndex)
+  })
+
+  cell.addEventListener("click", () => {
+    placeMark(cell, turn, cellIndex)
+  })
 })

@@ -1,21 +1,17 @@
+export let cellsData = [];
+
 //drawing cells on gameboard
 export const drawCells = gameBoard => {
   for(let x=1; x<11; x++){
     for(let y=1; y<11; y++){
       //cell creation
       const cell = document.createElement("div");
-      //cross turn hover image
-      const cellImageCrossTurn = document.createElement("img");
-      cellImageCrossTurn.style.width = "100%";
-      cellImageCrossTurn.src = "images/icons/cross-turn.png";
-      cellImageCrossTurn.style.display = "none";
-      cell.appendChild(cellImageCrossTurn);
-      //nought turn hover image
-      const cellImageNoughtTurn = document.createElement("img");
-      cellImageNoughtTurn.style.width = "100%";
-      cellImageNoughtTurn.src = "images/icons/nought-turn.png";
-      cellImageNoughtTurn.style.display = "none";
-      cell.appendChild(cellImageNoughtTurn);
+      //cell image
+      const cellImage = document.createElement("img");
+      cellImage.style.width = "100%";
+      cellImage.style.display = "none";
+      cellImage.classList.add("cell-image");
+      cell.appendChild(cellImage);
       //cell appending
       cell.style.gridColumnStart = x;
       cell.style.gridRowStart = y;
@@ -27,11 +23,31 @@ export const drawCells = gameBoard => {
   }
 }
 
-//what happens on cell click
-export const cellClick = (cell, turn) => {
-  //place mark
+export const showPossibleMark = (cell, turn, cellIndex) => {
+  if (cellsData[cellIndex] !== "o") {
+    switch (turn) {
+      case "nought":
+        cell.firstChild.src = "images/icons/nought-turn.png";
+        cell.firstChild.style.display = "block";
+        break;
+      case "cross":
+        break;
+    }
+  }
+}
+
+export const hidePossibleMark = (cell, turn, cellIndex) => {
+  if (cellsData[cellIndex] !== "o") {
+    cell.firstChild.style.display = "none";
+  }
+}
+
+export const placeMark = (cell, turn, cellIndex) => {
   switch (turn) {
     case "nought":
+      cellsData[cellIndex] = "o";
+      cell.firstChild.src = "images/icons/nought.png";
+      cell.firstChild.style.display = "block";
       break;
     case "cross":
       break;
