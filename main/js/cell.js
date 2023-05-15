@@ -1,4 +1,18 @@
-export let cellsData = [];
+export let cellsData = [
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", "", "", "", ""]
+];
+let cellIndex_x = 0;
+let cellIndex_y = 0;
+let turn = "nought";
 
 //drawing cells on gameboard
 export const drawCells = gameBoard => {
@@ -23,33 +37,53 @@ export const drawCells = gameBoard => {
   }
 }
 
-export const showPossibleMark = (cell, turn, cellIndex) => {
-  if (cellsData[cellIndex] !== "o") {
+const convertCellIndex = cellIndex => {
+  cellIndex_x = Math.floor(cellIndex / 10);
+  cellIndex_y = cellIndex % 10;
+}
+
+export const showPossibleMark = (cell, cellIndex) => {
+  convertCellIndex(cellIndex);
+
+  if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
     switch (turn) {
       case "nought":
         cell.firstChild.src = "images/icons/nought-turn.png";
         cell.firstChild.style.display = "block";
         break;
       case "cross":
+        cell.firstChild.src = "images/icons/cross-turn.png";
+        cell.firstChild.style.display = "block";
         break;
     }
   }
 }
 
-export const hidePossibleMark = (cell, turn, cellIndex) => {
-  if (cellsData[cellIndex] !== "o") {
+export const hidePossibleMark = (cell, cellIndex) => {
+  convertCellIndex(cellIndex);
+
+  if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
     cell.firstChild.style.display = "none";
   }
 }
 
-export const placeMark = (cell, turn, cellIndex) => {
+export const placeMark = (cell, cellIndex) => {
+  convertCellIndex(cellIndex);
+
   switch (turn) {
     case "nought":
-      cellsData[cellIndex] = "o";
+      cellsData[cellIndex_x][cellIndex_y] = "o";
       cell.firstChild.src = "images/icons/nought.png";
       cell.firstChild.style.display = "block";
+      turn = "cross"
       break;
     case "cross":
+      cellsData[cellIndex_x][cellIndex_y] = "x";
+      cell.firstChild.src = "images/icons/cross.png";
+      cell.firstChild.style.display = "block";
+      turn = "nought"
       break;
   }
+
+  console.log(cellsData)
 }

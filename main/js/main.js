@@ -5,7 +5,7 @@ import { cellsData, drawCells, placeMark, showPossibleMark, hidePossibleMark } f
 const gameBoard = document.querySelector(".game-board");
 
 //variables
-let turn = "nought";
+
 
 //generating cells
 drawCells(gameBoard);
@@ -15,14 +15,14 @@ const cells = document.querySelectorAll(".cell");
 
 cells.forEach( (cell, cellIndex) => {
   cell.addEventListener("mouseover", () => {
-    showPossibleMark(cell, turn, cellIndex)
+    showPossibleMark(cell, cellIndex)
   })
   
   cell.addEventListener("mouseout", () => {
-    hidePossibleMark(cell, turn, cellIndex)
+    hidePossibleMark(cell, cellIndex)
   })
 
   cell.addEventListener("click", () => {
-    placeMark(cell, turn, cellIndex)
+    placeMark(cell, cellIndex)
   })
 })
