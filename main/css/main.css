@@ -47,7 +47,6 @@ h1 {
   grid-template-columns: repeat(10, 1fr);
   width: calc(100vh - 210px);
   height: calc(100vh - 210px);
-  background-color: #F2F2F2;
 }
 
 .buttons button {
@@ -79,4 +78,9 @@ footer {
 .cell {
   background-color: #0D0D0D;
   border: 1px solid #9FA2A6;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cell.blank:hover img {
+    display: block !important;
+  }
 }

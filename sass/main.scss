@@ -51,7 +51,6 @@ body {
       grid-template-columns: repeat(10, 1fr);
       width: calc(100vh - 210px);
       height: calc(100vh - 210px);
-      background-color: $brightest;
     }
 
   .buttons {
@@ -90,9 +89,10 @@ body {
   .cell {
     background-color: $background;
     border: 1px solid $text;
-    &.blank {
-      &.cross-turn:hover {
-        
+    &.blank:hover img{
+      @media (hover: hover) and (pointer: fine) {
+          display: block !important;
       }
     }
   }
+  
