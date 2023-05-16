@@ -76,6 +76,7 @@ footer {
   }
 }
 .cell {
+  padding: 5px;
   background-color: #0D0D0D;
   border: 1px solid #9FA2A6;
 }
@@ -83,4 +84,25 @@ footer {
   .cell.blank:hover img {
     display: block !important;
   }
+}
+
+.win-dialog {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #0D0D0D;
+  border: 2px solid #9FA2A6;
+  border-radius: 10px;
+}
+.win-dialog button {
+  padding: 10px 20px;
+  color: #9FA2A6;
+  background-color: transparent;
+  border: 2px solid #9FA2A6;
+  border-radius: 10px;
 }

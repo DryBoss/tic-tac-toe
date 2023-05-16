@@ -12,7 +12,7 @@ export let cellsData = [
 ];
 let cellIndex_x = 0;
 let cellIndex_y = 0;
-let turn = "nought";
+let turn = "o";
 
 //drawing cells on gameboard
 export const drawCells = gameBoard => {
@@ -47,11 +47,11 @@ export const showPossibleMark = (cell, cellIndex) => {
 
   if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
     switch (turn) {
-      case "nought":
+      case "o":
         cell.firstChild.src = "images/icons/nought-turn.png";
         cell.firstChild.style.display = "block";
         break;
-      case "cross":
+      case "x":
         cell.firstChild.src = "images/icons/cross-turn.png";
         cell.firstChild.style.display = "block";
         break;
@@ -70,20 +70,97 @@ export const hidePossibleMark = (cell, cellIndex) => {
 export const placeMark = (cell, cellIndex) => {
   convertCellIndex(cellIndex);
 
+  if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
+    switch (turn) {
+      case "o":
+        cellsData[cellIndex_x][cellIndex_y] = "o";
+        cell.firstChild.src = "images/icons/nought.png";
+        cell.firstChild.style.display = "block";
+        break;
+      case "x":
+        cellsData[cellIndex_x][cellIndex_y] = "x";
+        cell.firstChild.src = "images/icons/cross.png";
+        cell.firstChild.style.display = "block";
+        break;
+    }
+  }
+}
+
+export const checkWin = () => {
+  //check rows
+  for(let row = 0; row < 10; row++){
+    let similarIcon = 0;
+    for(let column = 0; column < 10; column++){
+      if (turn === cellsData[row][column]){
+        similarIcon++
+      } else {
+        similarIcon = 0
+      }
+      if (similarIcon === 5) {
+        winDialog();
+      }
+    }
+  }
+  //check columns
+  for(let column = 0; column < 10; column++){
+    let similarIcon = 0;
+    for(let row = 0; row < 10; row++){
+      if (turn === cellsData[row][column]){
+        similarIcon++
+      } else {
+        similarIcon = 0
+      }
+      if (similarIcon === 5) {
+        winDialog();
+      }
+    }
+  }
+  //check diagonal [top left to bottom right]
+  for(let row = 0; row < 6; row++){
+    for(let column = 0; column < 6; column++){
+      let similarIcon = 0;
+      for(let diagonal = 0; diagonal < 5; diagonal++){
+        if (turn === cellsData[row + diagonal][column + diagonal]){
+          similarIcon++
+        } else {
+          similarIcon = 0
+        }
+        if (similarIcon === 5) {
+          winDialog();
+        }
+      }
+    }
+  }
+  //check diagonal [top right to bottom left]
+  for(let row = 0; row < 6; row++){
+    for(let column = 4; column < 10; column++){
+      let similarIcon = 0;
+      for(let diagonal = 0; diagonal < 5; diagonal++){
+        if (turn === cellsData[row + diagonal][column - diagonal]){
+          similarIcon++
+        } else {
+          similarIcon = 0
+        }
+        if (similarIcon === 5) {
+          winDialog();
+        }
+      }
+    }
+  }
+  changeTurn();
+}
+
+const changeTurn = () => {
   switch (turn) {
-    case "nought":
-      cellsData[cellIndex_x][cellIndex_y] = "o";
-      cell.firstChild.src = "images/icons/nought.png";
-      cell.firstChild.style.display = "block";
-      turn = "cross"
+    case "o" :
+      turn = "x"
       break;
-    case "cross":
-      cellsData[cellIndex_x][cellIndex_y] = "x";
-      cell.firstChild.src = "images/icons/cross.png";
-      cell.firstChild.style.display = "block";
-      turn = "nought"
+    case "x" :
+      turn = "o"
       break;
   }
+}
 
-  console.log(cellsData)
+const winDialog = () => {
+  document.querySelector(".win-dialog").style.display = "block"
 }

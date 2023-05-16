@@ -1,5 +1,5 @@
 //imports
-import { cellsData, drawCells, placeMark, showPossibleMark, hidePossibleMark } from "./cell.js";
+import { cellsData, drawCells, placeMark, showPossibleMark, hidePossibleMark, checkWin } from "./cell.js";
 
 //selectors
 const gameBoard = document.querySelector(".game-board");
@@ -23,6 +23,7 @@ cells.forEach( (cell, cellIndex) => {
   })
 
   cell.addEventListener("click", () => {
-    placeMark(cell, cellIndex)
+    placeMark(cell, cellIndex);
+    checkWin();
   })
 })
