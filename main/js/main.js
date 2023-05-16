@@ -6,7 +6,6 @@ const gameBoard = document.querySelector(".game-board");
 
 //variables
 
-
 //generating cells
 drawCells(gameBoard);
 

@@ -14,6 +14,10 @@ let cellIndex_x = 0;
 let cellIndex_y = 0;
 let turn = "o";
 
+const cellImages = document.querySelectorAll(".cell-image")
+
+
+
 //drawing cells on gameboard
 export const drawCells = gameBoard => {
   for(let x=1; x<11; x++){
@@ -30,8 +34,6 @@ export const drawCells = gameBoard => {
       cell.style.gridColumnStart = x;
       cell.style.gridRowStart = y;
       cell.classList.add("cell");
-      cell.classList.add("blank");
-      cell.classList.add("cross-turn");
       gameBoard.appendChild(cell);
     }
   }
@@ -163,4 +165,28 @@ const changeTurn = () => {
 
 const winDialog = () => {
   document.querySelector(".win-dialog").style.display = "block"
+  document.querySelector(".win-dialog p span").innerHTML = `${turn}`
 }
+
+export const resetGame = () => {
+  cellsData = [
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", "", "", ""]
+  ];
+  document.querySelector(".win-dialog").style.display = "none"
+  turn = "o"
+  cellImages.forEach(cellImage => {
+    cellImage.style.display = "none"
+  })
+}
+
+document.getElementById("restart").addEventListener("click", resetGame)
+document.getElementById("play-again").addEventListener("click", resetGame)

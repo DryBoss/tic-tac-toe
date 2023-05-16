@@ -90,7 +90,7 @@ body {
     padding: 5px;
     background-color: $background;
     border: 1px solid $text;
-    &.blank:hover img{
+    &:hover img{
       @media (hover: hover) and (pointer: fine) {
           display: block !important;
       }

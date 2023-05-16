@@ -81,7 +81,7 @@ footer {
   border: 1px solid #9FA2A6;
 }
 @media (hover: hover) and (pointer: fine) {
-  .cell.blank:hover img {
+  .cell:hover img {
     display: block !important;
   }
 }
