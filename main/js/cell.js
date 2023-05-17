@@ -13,10 +13,7 @@ export let cellsData = [
 let cellIndex_x = 0;
 let cellIndex_y = 0;
 let turn = "o";
-
-const cellImages = document.querySelectorAll(".cell-image")
-
-
+let dialogActive = false;
 
 //drawing cells on gameboard
 export const drawCells = gameBoard => {
@@ -45,18 +42,19 @@ const convertCellIndex = cellIndex => {
 }
 
 export const showPossibleMark = (cell, cellIndex) => {
-  convertCellIndex(cellIndex);
-
-  if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
-    switch (turn) {
-      case "o":
-        cell.firstChild.src = "images/icons/nought-turn.png";
-        cell.firstChild.style.display = "block";
-        break;
-      case "x":
-        cell.firstChild.src = "images/icons/cross-turn.png";
-        cell.firstChild.style.display = "block";
-        break;
+  if (!dialogActive) {
+    convertCellIndex(cellIndex);
+    if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
+      switch (turn) {
+        case "o":
+          cell.firstChild.src = "images/icons/nought-turn.png";
+          cell.firstChild.style.display = "block";
+          break;
+        case "x":
+          cell.firstChild.src = "images/icons/cross-turn.png";
+          cell.firstChild.style.display = "block";
+          break;
+      }
     }
   }
 }
@@ -70,8 +68,8 @@ export const hidePossibleMark = (cell, cellIndex) => {
 }
 
 export const placeMark = (cell, cellIndex) => {
-  convertCellIndex(cellIndex);
-
+  if (!dialogActive) {
+    convertCellIndex(cellIndex);
   if (cellsData[cellIndex_x][cellIndex_y] !== "o" && cellsData[cellIndex_x][cellIndex_y] !== "x") {
     switch (turn) {
       case "o":
@@ -86,10 +84,12 @@ export const placeMark = (cell, cellIndex) => {
         break;
     }
   }
+  }
 }
 
 export const checkWin = () => {
-  //check rows
+  if (!dialogActive) {
+    //check rows
   for(let row = 0; row < 10; row++){
     let similarIcon = 0;
     for(let column = 0; column < 10; column++){
@@ -150,6 +150,7 @@ export const checkWin = () => {
     }
   }
   changeTurn();
+  }
 }
 
 const changeTurn = () => {
@@ -164,6 +165,7 @@ const changeTurn = () => {
 }
 
 const winDialog = () => {
+  dialogActive = true
   document.querySelector(".win-dialog").style.display = "block"
   document.querySelector(".win-dialog p span").innerHTML = `${turn}`
 }
@@ -182,9 +184,10 @@ export const resetGame = () => {
     ["", "", "", "", "", "", "", "", "", ""]
   ];
   document.querySelector(".win-dialog").style.display = "none"
+  dialogActive = false;
   turn = "o"
-  cellImages.forEach(cellImage => {
-    cellImage.style.display = "none"
+  document.querySelectorAll(".cell-image").forEach(cellImage => {
+      cellImage.style.display = "none"
   })
 }
 
